@@ -42,5 +42,10 @@ wt.image(rain_wt, main = "Luquillo-LTER Daily Precipitation",
          plot.contour = FALSE)   # without contour lines
 
 
+# time-averaged cross-wavelet power
+wt.avg(rain_wt, siglvl = 0.01, sigcol = "red", sigpch = 20,
+       periodlab = "period (days)")
+
+
 my.wt <- analyze.wavelet(disc_Pool0, "precip",make.pval = TRUE, n.sim = 10) 
 
