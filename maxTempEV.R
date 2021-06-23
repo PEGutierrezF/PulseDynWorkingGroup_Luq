@@ -11,11 +11,8 @@
 
 rm(list=ls(all=TRUE)) 
 
-libraries <- c("tidyverse", "ggplot2", "xts","emmeans", 'quantmod', "ggpubr")
-lapply(libraries, require, character.only = TRUE)
 
-
-setwd("D:/Curriculum/14_ Colaboracion/2021 Pulse LTER/Pulse WG PR")
+setwd("D:/Curriculum/14_ Colaboracion/2021 Pulse LTER/Pulse WG PR/PulseDynWorkingGroup_Luq/data")
 All_var_1975_2021=read.csv("All_variables 1975-2021.csv")
 head(All_var_1975_2021)
 summary(All_var_1975_2021)
@@ -58,13 +55,20 @@ chartSeries(to.monthly(maxTempLuqxts),up.col='blue',dn.col='red',subset='2009::2
 
 mean(maxTempLuqxts)
 max(maxTempLuqxts)
+min(maxTempLuqxts)
 sd(maxTempLuqxts)
 
+
+quantile(maxTempLuqxts,0.98) 
+length(which(maxTempLuqxts > 31))
+
+boxplot(maxTempLuqxts)
+hist(maxTempLuqxts)
+
 # set a threshold here:
-threshold.peak<-6
+threshold.peak<-3
 maxTemp_peaks <-findPeaks(maxTempLuqxts, thresh=threshold.peak) # ERROR: does not recognize data above 8C ???
 plot(maxTempLuqxts[maxTemp_peaks-1])
-
 
 
 

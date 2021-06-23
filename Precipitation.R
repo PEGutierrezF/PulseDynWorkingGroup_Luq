@@ -10,10 +10,11 @@
 # ---------------------------------------------
 #  
 
+
+
 rm(list=ls(all=TRUE)) #give R a blank slate
 
-libraries <- c("tidyverse", "ggplot2", "xts","emmeans",'quantmod',"ggpubr","broom","gganimate")
-lapply(libraries, require, character.only = TRUE)
+
 
 setwd("D:/Curriculum/14_ Colaboracion/2021 Pulse LTER/Pulse WG PR/PulseDynWorkingGroup_Luq/data")
 rain=read.csv("evra1975-2021.csv")
@@ -58,6 +59,13 @@ min(Luqxts)
 max(Luqxts)
 sd(Luqxts)
 
+quantile(Luqxts,0.98) 
+
+length(which(rainLuq$rainfall > 62))
+length(rainLuq$rainfall [rainLuq$rainfall >62])
+
+boxplot(Luqxts)
+hist(Luqxts)
 #### find peaks and valleys
 #A peak[valley] is defined as the highest[lowest] value in a series, 
 #so, the function can only define it after a change in direction has occurred. 
@@ -72,7 +80,7 @@ sd(Luqxts)
 #anything less than that threshold (a deviation of 20 mm) could be argued to be a less biologically meaningful pulse
 
 # set a threshold here:
-threshold.peak<-30
+threshold.peak<-62
 LUQpeaks<-findPeaks(Luqxts, thresh=threshold.peak)
 plot(Luqxts[LUQpeaks-1])
 
