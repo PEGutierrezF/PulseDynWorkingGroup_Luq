@@ -22,14 +22,17 @@ summary(discharge)
 
 disc_Pool0 <- discharge %>%
   group_by(date) %>%
-  summarize(daily_discharge = mean(Discharge_FSN, na.rm = TRUE))
+  summarize(daily_discharge = mean(Discharge_FSN, na.rm = TRUE),
+            daily_discharge_max = max(Discharge_FSN, na.rm = TRUE))
 
-disc_Pool0
+max(disc_Pool0$daily_discharge)
 
+# write.csv(disc_Pool0, "mean and max summary.csv")
 
 # Wavelet Rainfall --------------------------------------------------------
 
-rain_wt <- analyze.wavelet(rainLuq, "rainfall",make.pval = TRUE, n.sim = 10)
+rain_wt <- analyze.wavelet(rainLuq, "rainfall", make.pval = TRUE, n.sim = 10)
+
 wt.image(rain_wt, main = "Luquillo-LTER Daily Precipitation",
          periodlab = "period (daily)",
          label.time.axis = T, show.date = T, date.format = "%Y-%m-%d",
@@ -48,5 +51,13 @@ wt.avg(rain_wt, siglvl = 0.01, sigcol = "red", sigpch = 20,
 
 
 
-my.wt <- analyze.wavelet(disc_Pool0, "precip",make.pval = TRUE, n.sim = 10) 
+# Wavelet Discharge Pool 0 ------------------------------------------------
+
+discharge.wt <- analyze.wavelet(disc_Pool0, "daily_discharge",make.pval = TRUE, n.sim = 10) 
+
+wt.image(discharge.wt, main = "Luquillo-LTER Daily Discharge Pool 0",
+         periodlab = "period (daily)",
+         label.time.axis = T, show.date = T, date.format = "%Y-%m-%d",
+         color.key = "quantile",legend.params = list(label.digits = 3, lab = "wavelet power levels", mar = 8))
+
 
