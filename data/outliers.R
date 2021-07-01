@@ -22,19 +22,19 @@ bagplot(bagplot_Pool0,factor=2.5,create.plot=TRUE,approx.limit=300,
 attach(bagplot_Pool0)
 bagplot(bagplot_Pool0$date,bagplot_Pool0$daily_discharge_max,verbose=FALSE,dkmethod=2)
 
-boxplot(bagplot_Pool0$daily_discharge_max)
 
 
 
 
 # Outliers ----------------------------------------------------------------
+# https://rdrr.io/cran/GmAMisc/man/outlier.html
 
-outlier(bagplot_Pool0$daily_discharge_max, method="median", addthres=TRUE)
+# n observation is considered outlier if the absolute difference between that 
+# observation and the sample mean is more than 2 Standard Deviations away 
+# (in either direction) from the mean.
 
+# In the plot, the central reference line is indicating the mean value, 
+# while the other two are set at mean-2*SD and mean+2*SD.
 
-# Example
-# create a toy dataset
-mydata <- c(2,3,4,5,6,7,8,9,50,50)
+outlier(bagplot_Pool0$daily_discharge_max, method="mean", addthres=TRUE)
 
-# locate outlier(s) using the median-based method
-outlier(mydata, method="median", addthres=TRUE)
