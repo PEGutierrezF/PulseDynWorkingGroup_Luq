@@ -13,7 +13,7 @@
 
 
 libraries <- c("tidyverse", "ggplot2", "xts","emmeans",
-               'quantmod',"ggpubr","broom","gganimate")
+               'quantmod',"ggpubr","broom","gganimate0","GmAMisc")
 lapply(libraries, require, character.only = TRUE)
 
 

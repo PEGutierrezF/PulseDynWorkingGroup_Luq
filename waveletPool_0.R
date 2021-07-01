@@ -22,7 +22,7 @@ summary(discharge)
 
 disc_Pool0 <- discharge %>%
   group_by(date) %>%
-  summarize(daily_discharge = mean(Discharge_FSN, na.rm = TRUE),
+  summarize(daily_discharge_mean = mean(Discharge_FSN, na.rm = TRUE),
             daily_discharge_max = max(Discharge_FSN, na.rm = TRUE))
 
 max(disc_Pool0$daily_discharge)
