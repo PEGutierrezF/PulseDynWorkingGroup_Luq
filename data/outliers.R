@@ -38,3 +38,9 @@ bagplot(bagplot_Pool0$date,bagplot_Pool0$daily_discharge_max,verbose=FALSE,dkmet
 
 outlier(bagplot_Pool0$daily_discharge_max, method="mean", addthres=TRUE)
 
+data=read.csv("graph.csv")
+data$date <-as.POSIXct(data$date,"%Y-%m-%d",tz = "UTC")
+
+ggplot(data,aes(date, daily_discharge_max)) +
+  geom_line( size=0.5)+
+  theme(legend.position = "none")
