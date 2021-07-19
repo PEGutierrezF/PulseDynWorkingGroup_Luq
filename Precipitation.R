@@ -100,6 +100,7 @@ peaks_graphic
 
 #save graphic - revise file name for your dataset
 ggsave("LUQ_precipitation_peaks.jpg", peaks_graphic,dpi=300)
+
 #*** why are some of the seemingly 20 mm daily events not indicated as a peak (red dot)?
 #*** peaks are defined relative to the preceding period of rainfall
 #*** if preceding period was wet, a 20 mm or greater event will not be designated as a peak
@@ -195,7 +196,7 @@ peak.magnitude.p
 ######### Save metrics into data frame ##################
 pulse_metrics_Luq<-data.frame(lter,site,driver,units,pv,nyears,nmonths,peak_mean,peak_sd,peak_CV,peaks_per_y,peak_per_d,
                                 peak.number.slope,peak.number.p,peak.magnitude.slope,peak.magnitude.p)
-write.csv(pulse_metrics_Luq,"pulse_metrics_Luq.csv")
+write.csv(pulse_metrics_Luq,"LUQ_pulse_metrics.csv")
 #then we will merge metrics data frame across LTER datasets using rbind
 
 

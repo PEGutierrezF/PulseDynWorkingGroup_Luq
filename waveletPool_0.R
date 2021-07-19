@@ -29,6 +29,8 @@ max(disc_Pool0$daily_discharge)
 
 # write.csv(disc_Pool0, "mean and max summary.csv")
 
+
+
 # Wavelet Rainfall --------------------------------------------------------
 
 rain_wt <- analyze.wavelet(rainLuq, "rainfall", make.pval = TRUE, n.sim = 10)
@@ -38,11 +40,14 @@ wt.image(rain_wt, main = "Luquillo-LTER Daily Precipitation",
          label.time.axis = T, show.date = T, date.format = "%Y-%m-%d",
          color.key = "quantile",legend.params = list(label.digits = 3, lab = "wavelet power levels", mar = 8))
 
-wt.image(rain_wt, main = "Luquillo-LTER Daily Precipitation",
+LUQ_walvelet <- wt.image(rain_wt, main = "Luquillo-LTER Daily Precipitation",
          periodlab = "period (daily)",
          label.time.axis = T, show.date = T, date.format = "%Y-%m-%d",
          color.key = "quantile",legend.params = list(label.digits = 3, lab = "wavelet power levels", mar = 8),
          plot.contour = FALSE)   # without contour lines
+
+
+
 
 
 # time-averaged cross-wavelet power
