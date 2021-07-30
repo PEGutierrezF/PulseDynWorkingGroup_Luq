@@ -58,11 +58,65 @@ wt.avg(rain_wt, siglvl = 0.01, sigcol = "red", sigpch = 20,
 
 # Wavelet Discharge Pool 0 ------------------------------------------------
 
-discharge.wt <- analyze.wavelet(disc_Pool0, "daily_discharge",make.pval = TRUE, n.sim = 10) 
+allNA=read.csv("physicochemistry.csv")
+head(allNA)
+summary(allNA)
 
-wt.image(discharge.wt, main = "Luquillo-LTER Daily Discharge Pool 0",
-         periodlab = "period (daily)",
+dischargeNew <- dischargeNA %>% select(week,discharge) %>%
+  filter(!is.na(week)) %>%
+  filter(!is.na(discharge))
+
+
+dischargeNew$week <-as.POSIXct(dischargeNew$week,"%Y-%m-%d",tz = "UTC")
+
+discharge.wt <- analyze.wavelet(dischargeNew, "discharge",make.pval = TRUE, n.sim = 10) 
+
+wt.image(discharge.wt, main = "Luquillo-LTER weekly Discharge Pool 0 (2000-2017)",
+                         periodlab = "period (week)",
+                         label.time.axis = T, show.date = T, date.format = "%Y-%m-%d",
+                         color.key = "quantile",legend.params = list(label.digits = 3, lab = "wavelet power levels", mar = 8),
+                         plot.contour = FALSE)   # without contour lines
+
+
+# Temperature -------------------------------------------------------------
+
+allNA=read.csv("physicochemistry.csv")
+head(allNA)
+summary(allNA)
+
+TemperatureNew <- allNA %>% select(week,Temperature) %>%
+  filter(!is.na(week)) %>%
+  filter(!is.na(Temperature))
+
+TemperatureNew$week <-as.POSIXct(TemperatureNew$week,"%Y-%m-%d",tz = "UTC")
+
+Temperature.wt <- analyze.wavelet(TemperatureNew, "Temperature", make.pval = TRUE, n.sim = 10) 
+
+wt.image(Temperature.wt, main = "Luquillo-LTER weekly Temperature Pool 0 (2000-2017)",
+         periodlab = "period (week)",
          label.time.axis = T, show.date = T, date.format = "%Y-%m-%d",
-         color.key = "quantile",legend.params = list(label.digits = 3, lab = "wavelet power levels", mar = 8))
+         color.key = "quantile",legend.params = list(label.digits = 3, lab = "wavelet power levels", mar = 8),
+         plot.contour = FALSE)   # without contour lines
 
+
+
+# DOC -------------------------------------------------------------
+
+allNA=read.csv("physicochemistry.csv")
+head(allNA)
+summary(allNA)
+
+DOCNew <- allNA %>% select(week,DOC) %>%
+  filter(!is.na(week)) %>%
+  filter(!is.na(DOC))
+
+DOCNew$week <-as.POSIXct(DOCNew$week,"%Y-%m-%d",tz = "UTC")
+
+DOC.wt <- analyze.wavelet(DOCNew, "DOC", make.pval = TRUE, n.sim = 10) 
+
+wt.image(DOC.wt, main = "Luquillo-LTER weekly DOC Pool 0 (2000-2017)",
+         periodlab = "period (week)",
+         label.time.axis = T, show.date = T, date.format = "%Y-%m-%d",
+         color.key = "quantile",legend.params = list(label.digits = 3, lab = "wavelet power levels", mar = 8),
+         plot.contour = FALSE)   # without contour lines
 
