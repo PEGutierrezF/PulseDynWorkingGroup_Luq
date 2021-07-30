@@ -71,7 +71,7 @@ dischargeNew$week <-as.POSIXct(dischargeNew$week,"%Y-%m-%d",tz = "UTC")
 
 discharge.wt <- analyze.wavelet(dischargeNew, "discharge",make.pval = TRUE, n.sim = 10) 
 
-wt.image(discharge.wt, main = "Luquillo-LTER weekly Discharge Pool 0 (2000-2017)",
+wt.image(discharge.wt, main = "Luquillo-LTER weekly Discharge, Pool 0 (2000-2017)",
                          periodlab = "period (week)",
                          label.time.axis = T, show.date = T, date.format = "%Y-%m-%d",
                          color.key = "quantile",legend.params = list(label.digits = 3, lab = "wavelet power levels", mar = 8),
@@ -92,7 +92,7 @@ TemperatureNew$week <-as.POSIXct(TemperatureNew$week,"%Y-%m-%d",tz = "UTC")
 
 Temperature.wt <- analyze.wavelet(TemperatureNew, "Temperature", make.pval = TRUE, n.sim = 10) 
 
-wt.image(Temperature.wt, main = "Luquillo-LTER weekly Temperature Pool 0 (2000-2017)",
+wt.image(Temperature.wt, main = "Luquillo-LTER weekly water Temperature, Pool 0 (2000-2017)",
          periodlab = "period (week)",
          label.time.axis = T, show.date = T, date.format = "%Y-%m-%d",
          color.key = "quantile",legend.params = list(label.digits = 3, lab = "wavelet power levels", mar = 8),
@@ -114,7 +114,7 @@ DOCNew$week <-as.POSIXct(DOCNew$week,"%Y-%m-%d",tz = "UTC")
 
 DOC.wt <- analyze.wavelet(DOCNew, "DOC", make.pval = TRUE, n.sim = 10) 
 
-wt.image(DOC.wt, main = "Luquillo-LTER weekly DOC Pool 0 (2000-2017)",
+wt.image(DOC.wt, main = "Luquillo-LTER weekly DOC, Pool 0 (2000-2017)",
          periodlab = "period (week)",
          label.time.axis = T, show.date = T, date.format = "%Y-%m-%d",
          color.key = "quantile",legend.params = list(label.digits = 3, lab = "wavelet power levels", mar = 8),
