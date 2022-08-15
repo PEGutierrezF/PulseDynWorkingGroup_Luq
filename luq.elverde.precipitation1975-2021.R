@@ -4,6 +4,7 @@
 
 # ---------------------------------------------
 # Precipitation El Verde Field Station 1975-2021
+# Peaks and Valleys with "quantmod" packages
 # 21 Jun 2021
 # Pablo E. Gutiérrez-Fonseca
 # pabloe.gutierrezfonseca@gmail.com

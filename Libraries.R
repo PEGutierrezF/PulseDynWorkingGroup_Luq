@@ -22,9 +22,13 @@ install.packages('gganimate')
 libraries <- c("tidyverse", "ggplot2", "xts","emmeans",
                'quantmod',"ggpubr","broom","gganimate","GmAMisc",
                "WaveletComp", "dplyr", "matrixStats", "tidyr", 
-               "lubridate", "readr")
+               "lubridate", "readr",'discharge')
 
 lapply(libraries, require, character.only = TRUE)
 
+### Install Libraries ###
+install.packages('discharge_1.0.tar.gz', 
+                 lib='destination_directory',repos = NULL)
+library(discharge)
 
 
