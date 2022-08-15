@@ -11,6 +11,14 @@
 # ---------------------------------------------
 #  
 
+
+# cleans global environment
+rm(list = ls())
+
+
+
+setwd("D:/Curriculum/14_ Colaboracion/2021 Pulse LTER/Pulse WG PR/PulseDynWorkingGroup_Luq/data")
+
 pool0 = read.csv("disc_Pool0_mean.csv", header=TRUE)[,1:2]
 summary(pool0)
 

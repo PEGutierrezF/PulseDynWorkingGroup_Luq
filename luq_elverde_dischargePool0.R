@@ -14,6 +14,9 @@
 
 rm(list=ls(all=TRUE)) #give R a blank slate
 
+
+
+
 setwd("D:/Curriculum/14_ Colaboracion/2021 Pulse LTER/Pulse WG PR/PulseDynWorkingGroup_Luq/data")
 discharge=read.csv("PrietaDischarge_15min_2006-2020.csv", sep=",", header=TRUE)
 head(discharge)
