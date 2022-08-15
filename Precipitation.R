@@ -17,7 +17,7 @@ rm(list=ls(all=TRUE)) #give R a blank slate
 
 
 setwd("D:/Curriculum/14_ Colaboracion/2021 Pulse LTER/Pulse WG PR/PulseDynWorkingGroup_Luq/data")
-rain=read.csv("evra1975-2021.csv")
+rain <- read.csv("evra1975-2021.csv")
 head(rain)
 summary(rain)
 
@@ -29,11 +29,16 @@ summary(rainLuq)
 head(rainLuq)
 
 
+# Step 1 ------------------------------------------------------------------
+
 #make date data into ISO format
 rainLuq$date <-as.POSIXct(rainLuq$date,"%Y-%m-%d",tz = "UTC")
+summary(rainLuq)
 
 #convert to xts (time series) object !!! assumes records of observations 
 # are ordered by time !!!
+# this function sorts by date so the records are in the correct order 
+# prior to analysis
 Luqxts <- xts(rainLuq[,-1], order.by=rainLuq[,1])
 
 
@@ -47,8 +52,9 @@ nyears(Luqxts)
 
 ######## Apply quantmod to raw data ########
 #### make a quantmod graphic
-
 chartSeries(Luqxts,theme="white")
+
+
 #look at one year only
 chartSeries(Luqxts, subset='2018::2019-01',theme="white")
 #look at monthly deviations for last 10 years
@@ -59,12 +65,12 @@ min(Luqxts)
 max(Luqxts)
 sd(Luqxts)
 
+# Define threshold as peaks distributed >98%. So, 62mm
 quantile(Luqxts,0.98) 
 
 length(which(rainLuq$rainfall > 62))
 length(rainLuq$rainfall [rainLuq$rainfall >62])
 
-boxplot(Luqxts)
 hist(Luqxts)
 #### find peaks and valleys
 #A peak[valley] is defined as the highest[lowest] value in a series, 
@@ -79,22 +85,31 @@ hist(Luqxts)
 #e.g., for SEV, 20 mm of precip is considered a large event that can drive plant growth
 #anything less than that threshold (a deviation of 20 mm) could be argued to be a less biologically meaningful pulse
 
+
+
+# Step 2 ------------------------------------------------------------------
 # set a threshold here:
-threshold.peak<-62
+threshold.peak <- 62
+
+
+# Step 3 ------------------------------------------------------------------
+# Function to identify peaks[valleys]
 LUQpeaks<-findPeaks(Luqxts, thresh=threshold.peak)
 plot(Luqxts[LUQpeaks-1])
 
+
+# GRAPH PEAKS
 #turn peaks into a dataframe to add it to a ggplot of the raw data
 #and calculate metrics
-#here we use 20 threshold
-peaks<-as.data.frame(Luqxts[LUQpeaks-1])
+#here we use 62 threshold
+peaks <- as.data.frame(Luqxts[LUQpeaks-1])
 head(peaks)
 
 #plot peaks onto raw data for precipitation
-peaks_graphic <-ggplot(rainLuq, aes(x = date, y = rainfall)) +
+peaks_graphic <- ggplot(rainLuq, aes(x = date, y = rainfall)) +
   geom_line(colour='blue') +
   labs(x = "Date",
-       y = "Precipitation (mm)") +
+       y = "Precipitation (mm, >62mm)") +
   geom_point(data=peaks,aes(x = as.POSIXct(row.names(peaks)), y = V1), colour='red')
 peaks_graphic
 
@@ -104,6 +119,12 @@ ggsave("LUQ_precipitation_peaks.jpg", peaks_graphic,dpi=300)
 #*** why are some of the seemingly 20 mm daily events not indicated as a peak (red dot)?
 #*** peaks are defined relative to the preceding period of rainfall
 #*** if preceding period was wet, a 20 mm or greater event will not be designated as a peak
+
+
+
+# Step 4 ------------------------------------------------------------------
+# Create a data frame to add to the group project
+#name your LTER
 
 #name your LTER
 lter<-"Luq"
@@ -120,11 +141,15 @@ units<-"mm"
 pv="peak"
 
 #save number of months and years
-nmonths<-nmonths(Luqxts)
-nyears<-nyears(Luqxts)
+nmonths <- nmonths(Luqxts)
+nyears <- nyears(Luqxts)
 
-#how many peaks per total obs, which are in units of days (here, obs = 365 days*33 years) ?
-peak_per_d<-length(peaks$V1)/length(rainLuq$precip)
+
+
+# Step 5 ------------------------------------------------------------------
+# how many peaks per total obs, which are in units of days 
+# (here, obs = 365 days*47 years) ?
+peak_per_d <- length(peaks$V1)/length(rainLuq$precip)
 peak_per_d
 
 #how many peaks per year?

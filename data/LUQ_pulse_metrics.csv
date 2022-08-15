@@ -1,2 +1,2 @@
 "","lter","site","driver","units","pv","nyears","nmonths","peak_mean","peak_sd","peak_CV","peaks_per_y","peak_per_d","peak.number.slope","peak.number.p","peak.magnitude.slope","peak.magnitude.p"
-"year","Luq","ElVerde","Daily precipitation","mm","peak",47,555,110.896121212121,52.6964693081633,0.475187668713551,3.51063829787234,Inf,-0.0775901942645704,0.00200473767929655,-9.40096657132975e-09,0.380670476124565
+"year","Luq","ElVerde","Daily precipitation","mm","peak",47,555,110.896121212121,52.6964693081633,0.475187668713551,3.51063829787234,0.00977314458330865,-0.0775901942645704,0.00200473767929655,-9.40086833250943e-09,0.380675628081674
