@@ -4,6 +4,7 @@
 
 # ---------------------------------------------
 # Maximum temperature at El Verde Field Station, Puerto Rico
+# Peaks and Valleys with "quantmod" packages
 # 31 Mar 2021
 # Pablo E. Gutiérrez-Fonseca
 # ---------------------------------------------

@@ -3,16 +3,18 @@
 
 
 # ---------------------------------------------
-# Minimun temperature of El Verde Field Stattion
+# Minimum temperature of El Verde Field Station
+# Peaks and Valleys with "quantmod" packages
 # 31 Mar 2021
 # Pablo E. Gutiérrez-Fonseca
 # ---------------------------------------------
 #  
 
+
+
 rm(list=ls(all=TRUE)) #give R a blank slate
 
-libraries <- c("tidyverse", "ggplot2", "xts","emmeans",'quantmod',"ggpubr","broom","gganimate")
-lapply(libraries, require, character.only = TRUE)
+
 
 
 setwd("D:/Curriculum/14_ Colaboracion/2021 Pulse LTER/Pulse WG PR")
