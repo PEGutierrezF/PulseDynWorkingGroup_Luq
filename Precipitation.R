@@ -149,33 +149,38 @@ nyears <- nyears(Luqxts)
 # Step 5 ------------------------------------------------------------------
 # how many peaks per total obs, which are in units of days 
 # (here, obs = 365 days*47 years) ?
-peak_per_d <- length(peaks$V1)/length(rainLuq$precip)
+peak_per_d <- length(peaks$V1)/length(rainLuq$rainfall)
 peak_per_d
 
 #how many peaks per year?
-peaks_per_y<-length(peaks$V1)/nyears(Luqxts)
+peaks_per_y <- length(peaks$V1)/nyears(Luqxts)
 peaks_per_y
 
 #average peak magnitude (in mm for precip)
-peak_mean<-mean(peaks$V1)
+peak_mean <- mean(peaks$V1)
 peak_mean
 
 #peak standard deviation
-peak_sd<-sd(peaks$V1)
+peak_sd <- sd(peaks$V1)
 
 #peak CV
-peak_CV<-sd(peaks$V1)/mean(peaks$V1)
+peak_CV <- sd(peaks$V1)/mean(peaks$V1)
 peak_CV
 
-# add year and time columns to peaks dataset
-peaks$time<-as.POSIXct(row.names(peaks))
-peaks$year<-as.numeric(format(as.POSIXct(row.names(peaks)),"%Y"))
 
 
-#### peak number vs. time
+# STEP 6: Standardized regression models for temporal change --------------
+
+# peak number vs. time: Has the number of peaks increased/decreased over time?
 # get slope of number of peaks per year for each year vs. year (and p-value)
+
+# add year and time columns to peaks dataset
+peaks$time <- as.POSIXct(row.names(peaks))
+peaks$year <- as.numeric(format(as.POSIXct(row.names(peaks)),"%Y"))
+
+
 # first, add any missing years that had no peaks (add zeros) - probably a more efficient way to do this...
-year<-min(as.numeric(format(as.POSIXct(rainLuq$date),"%Y"))):max(as.numeric(format(as.POSIXct(rainLuq$date),"%Y")))
+year <- min(as.numeric(format(as.POSIXct(rainLuq$date),"%Y"))):max(as.numeric(format(as.POSIXct(rainLuq$date),"%Y")))
 years<-as.data.frame(year)
 years
 peak.sum<-peaks %>% group_by(year) %>% summarise(mean.peak=mean(V1), count=n())
@@ -186,9 +191,9 @@ peak.number
 
 
 # second, build the stats models and save the slope and p as output
-peak.number.lm<-lm(count~year,data=peak.number)
+peak.number.lm <- lm(count~year,data=peak.number)
 #plot(peak.number.lm) # turn this on to check model statistical assumptions
-lmsum.number<-summary(peak.number.lm)
+lmsum.number <- summary(peak.number.lm)
 peak.number.slope<-peak.number.lm$coefficients[2]
 peak.number.slope
 peak.number.p<-lmsum.number$coefficients[2,4]
@@ -253,17 +258,17 @@ write.csv(pulse_metrics_Luq,"LUQ_pulse_metrics.csv")
 
 
 
-library(ggplot2)
-library("ggpubr")
+
+# EXTRA -------------------------------------------------------------------
 
 peaks <- ggplot(peak.number, aes(x = year, y = count)) + 
   geom_point() +
-  xlab('Year')+ ylab("Number of peaks (>30mm/d)") +
+  xlab('Year')+ ylab("Number of peaks (>62mm/d)") +
   stat_smooth(method = "lm", col = "blue") + 
   
-  stat_cor(label.y = 5,
+  stat_cor(label.y = 9,
            aes(label = paste(..rr.label.., ..p.label.., sep = "~`,`~"))) +
-  stat_regline_equation(label.y = 4.5) +
+  stat_regline_equation(label.y = 8.5) +
   
   theme(axis.title.x = element_text(size = 14, angle = 0)) + # axis x
   theme(axis.title.y = element_text(size = 14, angle = 90)) + # axis y
