@@ -17,7 +17,7 @@ rm(list=ls(all=TRUE)) #give R a blank slate
 
 
 
-setwd("D:/Curriculum/14_ Colaboracion/2021 Pulse LTER/Pulse WG PR")
+setwd("D:/Curriculum/14_ Colaboracion/2021 Pulse LTER/Pulse WG PR/PulseDynWorkingGroup_Luq/data")
 All_var_1975_2021=read.csv("All_variables 1975-2021.csv")
 head(All_var_1975_2021)
 summary(All_var_1975_2021)
@@ -62,10 +62,12 @@ mean(minTempLuqxts)
 max(minTempLuqxts)
 sd(minTempLuqxts)
 
+quantile(minTempLuqxts,0.98) 
+length(which(maxTempLuqxts > 31))
 
 
 # set a threshold here:
-threshold.peak<-2
+threshold.peak <- 3.415
 minTemp_peaks<-findPeaks(minTempLuqxts, thresh=threshold.peak)
 plot(minTempLuqxts[minTemp_peaks-1])
 
