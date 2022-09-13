@@ -271,10 +271,10 @@ peaks <- ggplot(peak.number, aes(x = year, y = count)) +
            aes(label = paste(..rr.label.., ..p.label.., sep = "~`,`~"))) +
   stat_regline_equation(label.y = 8.5) +
   
-  theme(axis.title.x = element_text(size = 14, angle = 0)) + # axis x
-  theme(axis.title.y = element_text(size = 14, angle = 90)) + # axis y
-  theme(axis.text.x=element_text(angle=0, size=12, vjust=0.5, color="black")) + #subaxis x
-  theme(axis.text.y=element_text(angle=0, size=12, vjust=0.5, color="black")) + #subaxis y
+  theme(axis.title.x = element_text(size = 16, angle = 0)) + # axis x
+  theme(axis.title.y = element_text(size = 16, angle = 90)) + # axis y
+  theme(axis.text.x=element_text(angle=0, size=14, vjust=0.5, color="black")) + #subaxis x
+  theme(axis.text.y=element_text(angle=0, size=14, vjust=0.5, color="black")) + #subaxis y
   
   theme_classic() 
 
