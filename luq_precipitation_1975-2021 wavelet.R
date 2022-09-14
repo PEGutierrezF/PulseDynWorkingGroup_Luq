@@ -14,21 +14,20 @@
 
 rm(list=ls(all=TRUE)) #give R a blank slate
 
+
+
+
 setwd("D:/Curriculum/14_ Colaboracion/2021 Pulse LTER/Pulse WG PR/PulseDynWorkingGroup_Luq/data")
-discharge=read.csv("PrietaDischarge_15min_2006-2020.csv")
-head(discharge)
-summary(discharge)
+rain <- read.csv("evra1975-2021.csv")
+head(rain)
+summary(rain)
 
+rainLuq <- rain %>% select(date,rainfall) %>%
+  filter(!is.na(date)) %>%
+  filter(!is.na(rainfall))
 
-disc_Pool0 <- discharge %>%
-  group_by(date) %>%
-  summarize(daily_discharge_mean = mean(Discharge_FSN, na.rm = TRUE),
-            daily_discharge_max = max(Discharge_FSN, na.rm = TRUE))
-
-max(disc_Pool0$daily_discharge)
-
-# write.csv(disc_Pool0, "mean and max summary.csv")
-
+summary(rainLuq)
+head(rainLuq)
 
 
 # Wavelet Rainfall --------------------------------------------------------

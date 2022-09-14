@@ -12,8 +12,8 @@
 #  
 
 
-
 rm(list=ls(all=TRUE)) #give R a blank slate
+
 
 
 
