@@ -49,6 +49,8 @@ rainLuq <- asStreamflow(rainLuq, start.date="1975-01-01",
                         end.date="2021-03-30", 
                         river.name="El Verde")
 
+rainLuq
+
 
 # Step 4 ------------------------------------------------------------------
 
@@ -94,6 +96,7 @@ write.csv(rainLuq, "RainLuq.csv")
 RainLuq.allstats <- allstats(file.name = "evra1975-2021.csv", river.name = "El Verde", 
                              file.type="csv", date.col=1,
                              discharge.col=2, skipped.rows=0)
+RainLuq.allstats
 
 #A data frame with columns
 #a.rms = Root mean squared amplitude.
