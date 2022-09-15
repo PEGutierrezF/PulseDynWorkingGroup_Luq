@@ -10,7 +10,11 @@
 # ---------------------------------------------
 #  
 
+
+
 rm(list=ls(all=TRUE)) 
+
+
 
 
 setwd("D:/Curriculum/14_ Colaboracion/2021 Pulse LTER/Pulse WG PR/PulseDynWorkingGroup_Luq/data")
