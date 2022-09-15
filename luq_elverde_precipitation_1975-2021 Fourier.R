@@ -33,7 +33,7 @@ tail(rainLuq)
 # Step 1 ------------------------------------------------------------------
 
 #positivize the data for rainfall by adding 20, cannot take log of zero/negative
-rainLuq$rainfall <- rainLuq$rainfall+20
+rainLuq$rainfall <- rainLuq$rainfall + 20
 
 
 # Step 2 ------------------------------------------------------------------
@@ -55,9 +55,9 @@ rainLuq
 # Step 4 ------------------------------------------------------------------
 
 ###Plot data to visually inspect time-series pulses
-#rainLuq <- rainLuq$data
-#plot(rainLuq$discharge~rainLuq$date, type="l", 
-#     ylab="Precipitation (mm)", xlab="Date")
+ rainLuq <- rainLuq$data
+ plot(rainLuq$discharge~rainLuq$date, type="l", 
+     ylab="Precipitation (mm)", xlab="Date")
 
 
 
@@ -77,7 +77,7 @@ plot(rainLuq.fourier, plot.type="hydrograph") # PLOT
 # Step 6 ------------------------------------------------------------------
 
 #Calculate annual extremes
-rainLuq.extremes<-annualExtremes(rainLuq)
+rainLuq.extremes <- annualExtremes(rainLuq)
 names(rainLuq.extremes)
 
 
@@ -114,6 +114,7 @@ RainLuq.allstats
 
 
 ### Long-term median values per Julian day ###
+# This Section Use this:  rainLuq <- rainLuq$data
 median.year <- tapply(rainLuq$discharge, list(rainLuq$year), median)
 median.sum <- median(median.year) #40.415
 median.jday <- tapply(rainLuq$discharge, list(rainLuq$jday), median)
@@ -129,14 +130,11 @@ min.annual <- tapply(rainLuq$discharge, list(rainLuq$year), min)
 ###max<- lm(jday~year) ### slope and p-value could indicate pheno-shifts (pulse metric)
 ###days.min and days.max could assess the pulse phenology and character
 ###max.jday$annual.max - min.jday$annual.min
-min<-lm(min.annual~year)
+min <- lm(min.annual~year)
 summary(min)
-min.slope<--1.356e-03
-min.p<-0.09011
-
-
-
-Voy por aqui
+min.slope<- -1.356e-03
+min.p <- 0.09011
+plot(min)
 
 #Quantile regression
 min.annual<-as.vector(min.annual)
@@ -151,8 +149,8 @@ plot(min.annual~year)
 max<-lm(max.annual~year)
 max<-rq(max.annual~year)
 summary(max)
-max.slope<-0.03758
-max.p<-0.204
+max.slope <- -1.6828
+max.p <- 0.04041
 
 #Quantile regression
 max.annual<-as.vector(max.annual)
@@ -166,23 +164,26 @@ plot(max.annual~year)
 
 
 
-f1<-data.frame(sev42Tmax.extremes$annual.max)
-max.window<-(max(f1$jday)-min(f1$jday))
-###Maximum period in-between peak Tmax period 53 days###
 
-f2<-data.frame(sev42Tmax.extremes$annual.min)
+# Step 8 ------------------------------------------------------------------
+
+f1<-data.frame(rainLuq.extremes$annual.max)
+max.window<-(max(f1$jday)-min(f1$jday))
+###Maximum period in-between peak Tmax period 335 days###
+
+f2<-data.frame(rainLuq.extremes$annual.min)
 min.window<-(max(f2$jday)-min(f2$jday))
-###Maximum period in-between low Tmax period 364 days###
+###Maximum period in-between low Tmax period 365 days###
 
 
 ### Plot annual.min and annual.max values ###
 par(mfrow=c(1,2), mar = c(5, 5, 1, 1))
-plot(f1$discharge~f1$jday, ylab="Temperature max +10 (C)", xlab="Julian Day", ylim=c(0,60), xlim=c(0,360))
+plot(f1$discharge~f1$jday, ylab="Precipitation max +20 (C)", xlab="Julian Day", ylim=c(0,60), xlim=c(0,360))
 par(new=TRUE)
 plot(jday, median.jday, type="l", ylim=c(0,60), xlim=c(0,360), ylab="", xlab="")
 abline(40.415,0)
 
-plot(f2$discharge~f2$jday, ylab="Temperature max +10 (C)", xlab="Julian Day", ylim=c(0,60), xlim=c(0,360))
+plot(f2$discharge~f2$jday, ylab="Precipitation max +20 (C)", xlab="Julian Day", ylim=c(0,60), xlim=c(0,360))
 par(new=TRUE)
 plot(jday, median.jday, type="l", ylim=c(0,60), xlim=c(0,360), ylab="", xlab="")
 abline(40.415,0)
@@ -197,17 +198,17 @@ lter<-"Luq"
 site<-"El Verde"
 
 #name your driver
-driver<-"Tmax"
+driver<-"Precipitation"
 #units = units of driver (e.g., mm)
-units<-"C"
+units<-"mm + 20"
 
 #maximum window
-max<-max.window
-#max.units<-"days"
+max <- max.window
+max.units<-"days"
 
 #minimum window
-min<-min.window
-#min.units<-"days"
+min <- min.window
+min.units<-"days"
 
 #maximum slope
 max.slope<-max.slope
@@ -222,7 +223,9 @@ min.slope<-min.slope
 min.p<-min.p
 
 ######### Save metrics into data frame ##################
-pulse_metrics_SEV42<-data.frame(lter,site,driver,units,max,max.units,min,min.units,max.slope,max.p,min.slope,min.p,sev42Tmax.allstats)
+pulse_metrics_rainLqu <- data.frame(lter,site,driver,units,max,max.units,
+                                    min,min.units,max.slope,max.p,min.slope,
+                                    min.p, RainLuq.allstats)
 
-write.csv(pulse_metrics_SEV42,"pulse_metrics_SEV42.csv")
+write.csv(pulse_metrics_rainLqu,"Luq_Fourier.csv")
 #then we will merge metrics data frame across LTER datasets using rbind
