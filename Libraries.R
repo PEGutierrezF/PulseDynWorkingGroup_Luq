@@ -17,8 +17,6 @@ rm(list = ls())
 
 
 
-install.packages('gganimate')
-
 libraries <- c("tidyverse", "ggplot2", "xts","emmeans",
                'quantmod',"ggpubr","broom","gganimate","GmAMisc",
                "WaveletComp", "dplyr", "matrixStats", "tidyr", 
