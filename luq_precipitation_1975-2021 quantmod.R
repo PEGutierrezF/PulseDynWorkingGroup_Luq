@@ -260,9 +260,9 @@ write.csv(pulse_metrics_Luq,"LUQ_pulse_metrics.csv")
 
 
 
-# EXTRA -------------------------------------------------------------------
+# EXTRA Peaks Numbers -------------------------------------------------------------------
 
-peaks <- ggplot(peak.number, aes(x = year, y = count)) + 
+peaks.numbers <- ggplot(peak.number, aes(x = year, y = count)) + 
   geom_point() +
   xlab('Year')+ ylab("Number of peaks (>62mm/d)") +
   stat_smooth(method = "lm", col = "blue") + 
@@ -278,7 +278,29 @@ peaks <- ggplot(peak.number, aes(x = year, y = count)) +
   
   theme_classic() 
 
-peaks
-peaks + ggsave("PeaksLuq100.jpeg",  width = 12, height = 10, units = "cm")                     
+peaks.numbers
+peaks.numbers + ggsave("Peaks_Numbers_Luq100.jpeg",  width = 12, height = 10, units = "cm")                     
+
+
+# EXTRA Peak Magnitud -------------------------------------------------------------------
+
+peaks.maginitud <- ggplot(peak.magnitude.lm, aes(x = time, y = V1)) + 
+  geom_point() +
+  xlab('Year')+ ylab("Peak magnitude (>62mm/d)") +
+  stat_smooth(method = "lm", col = "blue") + 
+  
+  stat_cor(label.y = 400,
+           aes(label = paste(..rr.label.., ..p.label.., sep = "~`,`~"))) +
+  stat_regline_equation(label.y = 380) +
+  
+  theme(axis.title.x = element_text(size = 16, angle = 0)) + # axis x
+  theme(axis.title.y = element_text(size = 16, angle = 90)) + # axis y
+  theme(axis.text.x=element_text(angle=0, size=14, vjust=0.5, color="black")) + #subaxis x
+  theme(axis.text.y=element_text(angle=0, size=14, vjust=0.5, color="black")) + #subaxis y
+  
+  theme_classic() 
+
+peaks.maginitud
+peaks.maginitud + ggsave("Peaks_Magnitud_Luq100.jpeg",  width = 12, height = 10, units = "cm")                     
 
 
