@@ -63,7 +63,7 @@ max(minTempLuqxts)
 sd(minTempLuqxts)
 
 quantile(minTempLuqxts,0.98) 
-length(which(maxTempLuqxts > 31))
+length(which(minTempLuqxts > 23.4))
 
 
 # set a threshold here:

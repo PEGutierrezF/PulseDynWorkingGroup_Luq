@@ -70,7 +70,7 @@ sd(Luqxts)
 quantile(Luqxts,0.98) 
 
 length(which(rainLuq$rainfall > 62))
-length(rainLuq$rainfall [rainLuq$rainfall >62])
+length(rainLuq$rainfall [rainLuq$rainfall > 62])
 
 hist(Luqxts)
 #### find peaks and valleys

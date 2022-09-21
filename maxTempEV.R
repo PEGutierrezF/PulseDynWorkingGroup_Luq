@@ -29,6 +29,20 @@ summary(maxTempLuq)
 
 
 
+. <- All_var_1975_2021 %>% select(max_temp, min_temp) %>%
+  filter(!is.na(max_temp)) %>%
+  filter(!is.na(min_temp))
+
+
+.. <- (.$max_temp - .$min_temp)
+mean(..)
+max(..)
+which(.. == 17.2, arr.ind=TRUE)
+
+
+min(.)
+max(.)
+
 # Select only Maximum Temperature -----------------------------------------
 
 maxTempLuq_apro <- maxTempLuq %>% select(date, max_temp_apro) # let's work with max first
