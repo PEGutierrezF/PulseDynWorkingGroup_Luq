@@ -29,20 +29,6 @@ summary(maxTempLuq)
 
 
 
-. <- All_var_1975_2021 %>% select(max_temp, min_temp) %>%
-  filter(!is.na(max_temp)) %>%
-  filter(!is.na(min_temp))
-
-
-.. <- (.$max_temp - .$min_temp)
-mean(..)
-max(..)
-which(.. == 17.2, arr.ind=TRUE)
-
-
-min(.)
-max(.)
-
 # Select only Maximum Temperature -----------------------------------------
 
 maxTempLuq_apro <- maxTempLuq %>% select(date, max_temp_apro) # let's work with max first
@@ -85,7 +71,7 @@ boxplot(maxTempLuqxts)
 hist(maxTempLuqxts)
 
 # set a threshold here:
-threshold.peak<-3
+threshold.peak<-5.49
 maxTemp_peaks <-findPeaks(maxTempLuqxts, thresh=threshold.peak) # ERROR: does not recognize data above 8C ???
 plot(maxTempLuqxts[maxTemp_peaks-1])
 
@@ -102,7 +88,7 @@ peaks<-as.data.frame(maxTempLuqxts[maxTemp_peaks-1])
 peaks_graphic_Max_Tem<-ggplot(maxTempLuq_apro, aes(x = date, y = max_temp_apro)) +
   geom_line(colour='blue') +
   labs(x = "Date",
-       y = "Maximum temperature (C, >31C)") +
+       y = "Maximum temperature (C, > 5.49C)") +
   geom_point(data=peaks,aes(x = as.POSIXct(row.names(peaks)), y = V1), colour='red')
 peaks_graphic_Max_Tem
 

@@ -63,11 +63,11 @@ max(minTempLuqxts)
 sd(minTempLuqxts)
 
 quantile(minTempLuqxts,0.98) 
-length(which(minTempLuqxts > 23.4))
+length(which(minTempLuqxts > 5.49))
 
 
 # set a threshold here:
-threshold.peak <- 3.415
+threshold.peak <- 5.49
 minTemp_peaks<-findPeaks(minTempLuqxts, thresh=threshold.peak)
 plot(minTempLuqxts[minTemp_peaks-1])
 
