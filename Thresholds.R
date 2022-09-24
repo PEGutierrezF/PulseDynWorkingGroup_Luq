@@ -27,7 +27,8 @@
 mean(..)
 min(..)
 max(..)
-which(.. == 17.2, arr.ind=TRUE)
+
+which(. == 36.7, arr.ind=TRUE)
 
 
 min(.)

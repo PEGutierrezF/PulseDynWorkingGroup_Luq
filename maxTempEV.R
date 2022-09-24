@@ -65,13 +65,13 @@ sd(maxTempLuqxts)
 
 
 quantile(maxTempLuqxts,0.98) 
-length(which(maxTempLuqxts > 31))
+length(which(maxTempLuqxts > 5.5))
 
 boxplot(maxTempLuqxts)
 hist(maxTempLuqxts)
 
 # set a threshold here:
-threshold.peak<-5.49
+threshold.peak<-5.5
 maxTemp_peaks <-findPeaks(maxTempLuqxts, thresh=threshold.peak) # ERROR: does not recognize data above 8C ???
 plot(maxTempLuqxts[maxTemp_peaks-1])
 
@@ -231,12 +231,12 @@ write.csv(pulse_metrics_Luq,"pulse_metrics_Luq_,max_temp.csv")
 
 peaks <- ggplot(peak.number, aes(x = year, y = count)) + 
   geom_point() +
-  xlab('Year')+ ylab("Number of peaks (>4C)") +
+  xlab('Year')+ ylab("Number of peaks (>5.5 C)") +
   stat_smooth(method = "lm", col = "blue") + 
   
-  stat_cor(label.y = 6,
+  stat_cor(label.y = 3.7, label.x = 2008,
            aes(label = paste(..rr.label.., ..p.label.., sep = "~`,`~"))) +
-  stat_regline_equation(label.y = 5.5) +
+  stat_regline_equation(label.y = 3.5, label.x = 2008) +
   
   theme(axis.title.x = element_text(size = 14, angle = 0)) + # axis x
   theme(axis.title.y = element_text(size = 14, angle = 90)) + # axis y
