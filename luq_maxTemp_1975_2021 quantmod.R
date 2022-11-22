@@ -63,9 +63,7 @@ max(maxTempLuqxts)
 min(maxTempLuqxts)
 sd(maxTempLuqxts)
 
-
-quantile(maxTempLuqxts,0.98) 
-length(which(maxTempLuqxts > 5.5))
+length(which(maxTempLuqxts > 5.5)) # This is mean changes 
 
 boxplot(maxTempLuqxts)
 hist(maxTempLuqxts)
@@ -88,7 +86,7 @@ peaks<-as.data.frame(maxTempLuqxts[maxTemp_peaks-1])
 peaks_graphic_Max_Tem<-ggplot(maxTempLuq_apro, aes(x = date, y = max_temp_apro)) +
   geom_line(colour='blue') +
   labs(x = "Date",
-       y = "Maximum temperature (C, > 5.49C)") +
+       y = "Maximum temperature (C, > 5.5C)") +
   geom_point(data=peaks,aes(x = as.POSIXct(row.names(peaks)), y = V1), colour='red')
 peaks_graphic_Max_Tem
 
@@ -116,8 +114,8 @@ units<-"C"
 pv="peak"
 
 #save number of months and years
-nmonths<-nmonths(maxTempLuqxts)
-nyears<-nyears(maxTempLuqxts)
+nmonths <- nmonths(maxTempLuqxts)
+nyears <- nyears(maxTempLuqxts)
 
 
 #how many peaks per total obs, which are in units of days (here, obs = 365 days*33 years) ?
@@ -195,7 +193,7 @@ peak.magnitude.p
 ######### Save metrics into data frame ##################
 pulse_metrics_Luq<-data.frame(lter,site,driver,units,pv,nyears,nmonths,peak_mean,peak_sd,peak_CV,peaks_per_y,peak_per_d,
                               peak.number.slope,peak.number.p,peak.magnitude.slope,peak.magnitude.p)
-write.csv(pulse_metrics_Luq,"pulse_metrics_Luq_,max_temp.csv")
+write.csv(pulse_metrics_Luq,"Luq_max_temp_quantmod_Nov-22-2022.csv")
 #then we will merge metrics data frame across LTER datasets using rbind
 
 
