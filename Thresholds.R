@@ -12,11 +12,14 @@
 
 
 
+# This is the mean temperature change
+5.492025 (5.5)
 
 ###########################################################################
 # Temperature El Verde Field Station --------------------------------------
 ###########################################################################
 
+All_var_1975_2021 <- read.csv("All_variables 1975-2021.csv")
 
 . <- All_var_1975_2021 %>% select(max_temp, min_temp) %>%
   filter(!is.na(max_temp)) %>%
@@ -24,7 +27,7 @@
 
 
 .. <- (.$max_temp - .$min_temp)
-mean(..)
+mean(..) # as a threshold select this temperature
 min(..)
 max(..)
 
