@@ -19,7 +19,7 @@ rm(list=ls(all=TRUE))
 
 setwd("D:/Curriculum/14_ Colaboracion/2021 Pulse LTER/Pulse WG PR/PulseDynWorkingGroup_Luq/data")
 All_var_1975_2021=read.csv("All_variables 1975-2021.csv")
-head(All_var_1975_2021)
+tail(All_var_1975_2021)
 summary(All_var_1975_2021)
 
 maxTempLuq <- All_var_1975_2021 %>% select(date, max_temp, min_temp) %>% # select date, max and min
