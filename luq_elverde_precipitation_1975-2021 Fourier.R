@@ -91,7 +91,7 @@ comp = compare.periods(c("2002-01-01", "2011-12-31"),
 # allstats function works on files
 # write R 'streamflow' object data into csv file
 rainLuq <- rainLuq$data
-write.csv(rainLuq, "RainLuq.csv")
+write.csv(rainLuq, "RainLuq_Fourier_Nov-22-2022.csv")
 
 RainLuq.allstats <- allstats(file.name = "evra1975-2021.csv", river.name = "El Verde", 
                              file.type="csv", date.col=1,
@@ -227,5 +227,5 @@ pulse_metrics_rainLqu <- data.frame(lter,site,driver,units,max,max.units,
                                     min,min.units,max.slope,max.p,min.slope,
                                     min.p, RainLuq.allstats)
 
-write.csv(pulse_metrics_rainLqu,"Luq_Fourier.csv")
+write.csv(pulse_metrics_rainLqu,"Luq_Fourier_Nov-22-2022.csv")
 #then we will merge metrics data frame across LTER datasets using rbind
