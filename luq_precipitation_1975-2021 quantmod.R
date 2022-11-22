@@ -227,7 +227,7 @@ peak.magnitude.p
 ######### Save metrics into data frame ##################
 pulse_metrics_Luq<-data.frame(lter,site,driver,units,pv,nyears,nmonths,peak_mean,peak_sd,peak_CV,peaks_per_y,peak_per_d,
                                 peak.number.slope,peak.number.p,peak.magnitude.slope,peak.magnitude.p)
-write.csv(pulse_metrics_Luq,"LUQ_pulse_metrics.csv")
+write.csv(pulse_metrics_Luq,"LUQ_pulse_metrics_Nov-22-2022.csv")
 #then we will merge metrics data frame across LTER datasets using rbind
 
 
